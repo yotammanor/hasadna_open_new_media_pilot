@@ -1,0 +1,13 @@
+/*.apps{*/
+    /*position:relative;*/
+/*}*/
+
+.nameOfPage {
+    visibility:hidden;
+}
+
+.selected {
+    visibility: visible;
+}
+
+

@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html>
+
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'facebook_aggregator_pilot/style.css' %}" />
+
+<html dir="rtl">
 <head>
     <title>The New-Media Agency</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+    function showApp(a) {
+{#        if $(".selected")#}
+        $(".selected").removeClass("selected")
+        $('#'+a).addClass("selected");
+
+    }
+    </script>
+
 </head>
 <body>
+<aside class="apps" id="aside">
     {% for message in list_of_messages %}
-        <li>{{ message }}</li><br><br>
+        <li>
+            {{ message.message }}<br>
+            <a href="#" onclick="showApp('message_{{ message.id }}');">לחץ כאן כדי לחשוף מי כתב את הפוסט</a>
+            <br>
+            <span class="nameOfPage"  id="message_{{ message.id }}">{{ message.from.name }}</span>
+        </li>
+        <br><br>
     {% endfor %}
+    </aside>
 </body>
 </html>
+
+{#    {% for message in list_of_messages %}#}
+{#        <li>#}
+{#            <a href="#">{{ message.message }}</a>#}
+{#        </li>#}
+{#        <br>#}
+{#        {{ message.from.name }}#}
+{#        <br><br>#}
+{#    {% endfor %}#}
