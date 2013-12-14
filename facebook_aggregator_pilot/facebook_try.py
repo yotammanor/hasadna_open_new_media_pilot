@@ -4,7 +4,7 @@ __author__ = 'yotam'
 
 import facebook
 from pprint import pprint
-token = 'CAACEdEose0cBAEZAoiPZAaRLCu2NIPTyVEK9ZCQNbWSnkNoNUhmA0uuIbQZAD9v1lltnkjQ8EKp9uMJHunLUG5khhAkLOX8Pb1lKArHT5a1j9TDnIxlAczh2QZBhzw8rIIgZBbnqRgewWUbQdnFC7ML4z7x3e3bWoLxE3uDNsHb5lIwZCeyEnGC7SvqmFMjnrR7K5r4eBGRVQZDZD'
+token = 'CAACEdEose0cBALRBkSpi35JicLIfUbOYEmWZBfYfI2siL47ZCWQ7H9x40dePc96dC3m9mDM5BZAaQiVGgnZBwccTzyZC4oviTgPHJ3DY4u1ZBeY9aO09GeaLjVC8jLVmZAv6ebovvv7wQYaHQxrnQZCoTwJZCW07CSYChmsSFz1RJcTtwBZBEtRif55JHFv7nU2DAZD'
 graph = facebook.GraphAPI(access_token=token)
 
 profile = graph.get_object("me")

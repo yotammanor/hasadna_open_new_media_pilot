@@ -8,7 +8,16 @@ import facebook
 from random import randrange
 
 
-PAGES_OF_POLITICIANS = ['naftalibennett', 'YairLapid', 'ShellyYachimovich', 'barackobama']
+PAGES_OF_POLITICIANS = ['naftalibennett',
+                        'YairLapid',
+                        'ShellyYachimovich',
+                        'Netanyahu',
+                        'zehavagalon',
+                        'IsaacHerzogKneset',
+                        'DeryArye',
+                        'GermanYeshAtid',
+                        '173196886046831',  # Bugi Ya'lon
+                        ]
 
 
 def get_last_status_message(graph_object, page_id):
@@ -21,8 +30,7 @@ def get_last_status_message(graph_object, page_id):
 
 
 def get_random_status_message(graph_object, page_id):
-
-    all_posts = graph_object.get_connections(id=page_id, connection_name='posts', args={"limit": "20"})
+    all_posts = graph_object.get_connections(id=page_id, connection_name='posts', args={'limit': '10'})
     list_of_posts = all_posts['data']
     list_of_posts.sort(key=lambda x: x['created_time'], reverse=True)
     status_message = list_of_posts[randrange(len(list_of_posts))]  # A random post from the list
@@ -30,16 +38,16 @@ def get_random_status_message(graph_object, page_id):
 
 
 def get_list_of_pages(number_of_pages):
-    local_pages_of_politicians = PAGES_OF_POLITICIANS
+    local_pages_of_politicians = PAGES_OF_POLITICIANS[:]
     selected_list_of_pages = list()
-    while len(selected_list_of_pages)<=number_of_pages:
+    while len(selected_list_of_pages) < number_of_pages:
         selected_list_of_pages.append(local_pages_of_politicians.pop(randrange(len(local_pages_of_politicians))))
     return selected_list_of_pages
 
 
 # Create your views here.
 def index(request):
-    token = 'CAACEdEose0cBAJ1slET8JLburo1Xli3wwXuynK5ktBqn1WWWNUkCyjx9q7FVoO9ZCCHddpEAJi9cKewGoZCSiH7H4VwH941pZAiQlOxBaUjAPpZA4MWb3TsQcrYyBjwZA40hi2j0ISJGFvdFDIyTV2TuJ7nIo85D0KIWb4ASk9rlZBjNA9Bb2MErVUqEUA3Q4ZD'
+    token = 'CAACEdEose0cBALRBkSpi35JicLIfUbOYEmWZBfYfI2siL47ZCWQ7H9x40dePc96dC3m9mDM5BZAaQiVGgnZBwccTzyZC4oviTgPHJ3DY4u1ZBeY9aO09GeaLjVC8jLVmZAv6ebovvv7wQYaHQxrnQZCoTwJZCW07CSYChmsSFz1RJcTtwBZBEtRif55JHFv7nU2DAZD'
 
     graph = facebook.GraphAPI(access_token=token)
     list_of_pages = get_list_of_pages(number_of_pages=3)
