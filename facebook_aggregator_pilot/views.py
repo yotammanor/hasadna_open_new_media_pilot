@@ -47,9 +47,12 @@ def get_list_of_pages(number_of_pages):
 
 # Create your views here.
 def index(request):
-    token = 'CAACEdEose0cBALRBkSpi35JicLIfUbOYEmWZBfYfI2siL47ZCWQ7H9x40dePc96dC3m9mDM5BZAaQiVGgnZBwccTzyZC4oviTgPHJ3DY4u1ZBeY9aO09GeaLjVC8jLVmZAv6ebovvv7wQYaHQxrnQZCoTwJZCW07CSYChmsSFz1RJcTtwBZBEtRif55JHFv7nU2DAZD'
 
-    graph = facebook.GraphAPI(access_token=token)
+    app_id = '238712782964401'  # hasadna-OpenNewMedia-Pilot
+    app_secret = '2914f1c0116fc917ad452a698834b92b'
+    access_token = facebook.get_app_access_token(app_id, app_secret)
+    graph = facebook.GraphAPI(access_token=access_token)
+
     list_of_pages = get_list_of_pages(number_of_pages=3)
 
     list_of_messages = [get_random_status_message(graph, page_id) for page_id in list_of_pages]
